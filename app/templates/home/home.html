@@ -1,0 +1,330 @@
+{% extends 'base.html' %}
+{% block nav_home %}active{% endblock nav_home %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+
+<div class="container home-container" data-url="{{ url_for('summary_api.read_api') }}">
+    <div class="row mb-4">
+        <div class="col d-flex justify-content-end">
+            <a class="btn btn-sm btn-success" href="{{ url_for('outgoing.create') }}" role="button">Add New <i class="bi bi-plus-lg"></i></a>
+        </div>
+    </div>
+
+    <div class="home-loading" style="display: block;">
+        <div class="row mb-5">
+            <div class="col d-flex justify-content-center">
+                <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="visually-hidden">Loading..</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+                <h3>Loading...</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-main" style="display: none;">
+
+        <div class="row mb-2">
+            <div class="col">
+                <h3 class="mb-1">Total Amounts</h3>
+                <div style="font-size: 1.1rem;">This section shows the overall amount and number of items for a particular range of date.</div>
+                <div style="font-size: 1.1rem;">Total amount does not include amount from items marked as Offset.</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+
+                <div class="card home-card">
+                    <div class="card-header bg-primary text-light">
+                        <div class="row">
+                            <div class="col d-flex justify-content-between align-items-center">
+                                <span>Today</span>
+                                <a class="btn btn-sm btn-secondary home-summary-link-today" role="button" href="{{ url_for('outgoing.reads') }}">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li">
+                            <div class="home-li-div">
+                                <span>Total</span>
+                                <h5 class="home-summary-amount-today"></h5>
+                            </div>
+                        </li>
+                        <li class="list-group-item home-li">
+                            <div class="home-li-div">
+                                <span>Item</span>
+                                <h5 class="home-summary-items-today"></h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <div class="row">
+                            <div class="col d-flex justify-content-between align-items-center">
+                                <span>This Week</span>
+                                <a class="btn btn-sm btn-dark home-summary-link-this-week" role="button" href="{{ url_for('outgoing.reads') }}">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li">
+                            <div class="home-li-div">
+                                <span>Total</span>
+                                <h5 class="home-summary-amount-this-week"></h5>
+                            </div>
+                        </li>
+                        <li class="list-group-item home-li">
+                            <div class="home-li-div">
+                                <span>Item</span>
+                                <h5 class="home-summary-items-this-week"></h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <div class="row">
+                            <div class="col d-flex justify-content-between align-items-center">
+                                <span>This Month</span>
+                                <a class="btn btn-sm btn-dark home-summary-link-this-month" role="button" href="{{ url_for('outgoing.reads') }}">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li">
+                            <div class="home-li-div">
+                                <span>Total</span>
+                                <h5 class="home-summary-amount-this-month"></h5>
+                            </div>
+                        </li>
+                        <li class="list-group-item home-li">
+                            <div class="home-li-div">
+                                <span>Item</span>
+                                <h5 class="home-summary-items-this-month"></h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <div class="row">
+                            <div class="col d-flex justify-content-between align-items-center">
+                                <span>This Year</span>
+                                <a class="btn btn-sm btn-dark home-summary-link-this-year" role="button" href="{{ url_for('outgoing.reads') }}">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li">
+                            <div class="home-li-div">
+                                <span>Total</span>
+                                <h5 class="home-summary-amount-this-year"></h5>
+                            </div>
+                        </li>
+                        <li class="list-group-item home-li">
+                            <div class="home-li-div">
+                                <span>Item</span>
+                                <h5 class="home-summary-items-this-year"></h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            
+        </div>
+
+
+
+
+
+        <div class="row mt-5 mb-2">
+            <div class="col">
+                <h3 class="mb-1">Category</h3>
+                <div style="font-size: 1.1rem;">This section shows a simple overview of the Outgoing Category.</div>
+                <div style="font-size: 1.1rem;">Outgoing Category are indicators that groups particular items. i.e. Utilities, Rent, etc</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+                <div class="card home-card">
+                    <div class="card-header bg-primary text-light">
+                        <span>Today</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-category-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-category-today-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-category-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-category-today-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <span>This Week</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-category-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-category-this-week-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-category-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-category-this-week-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <span>This Month</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-category-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-category-this-month-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-category-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-category-this-month-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <span>This Year</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-category-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-category-this-year-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-category-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-category-this-year-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row mt-5 mb-2">
+            <div class="col">
+                <h3 class="mb-1">Form</h3>
+                <div style="font-size: 1.1rem;">This section shows a simple overview of the Outgoing Form.</div>
+                <div style="font-size: 1.1rem;">Outgoing Form are the way a particular item was purchased i.e. Credit Card, Cash, etc</div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+                <div class="card home-card">
+                    <div class="card-header bg-primary text-light">
+                        <span>Today</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-form-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-form-today-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-form-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-form-today-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <span>This Week</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-form-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-form-this-week-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-form-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-form-this-week-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <span>This Month</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-form-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-form-this-month-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-form-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-form-this-month-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <span>This Year</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-form-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-form-this-year-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-form-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-form-this-year-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock content %}
+{% block body_js%}
+<script src="{{ url_for('static', filename='js/auth_home.min.js') }}"></script>
+{% endblock body_js%}

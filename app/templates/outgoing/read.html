@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block nav_outgoings %}active{% endblock nav_outgoings %}
+
+{% block title %}{{ item.label }}{% endblock title %}
+
+{% block content %}
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 offset-lg-3">
+            <div class="card outgoing-read-item-card">
+                <div class="card-body outgoing-read-item-card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="outgoing-read-date-time">
+                                {% if item.time %}
+                                <small class="me-1 text-light">{{ item.time }}</small>
+                                {% endif %}
+                                <small class="text-light">{{ item.date }}</small>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="outgoing-read-amount-currency">
+                                <span class="me-1" style="font-size: 1rem;">{{ item.currency }}</span>
+                                <h2 class="me-1">{{ item.amount }}</h2>
+                                {% if item.offset %}
+                                <div class="outgoing-read-offset">
+                                    <span class="badge text-bg-warning">Offset</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="card-subtitle mb-2 text-muted" id="outgoingLabelItem">{{ item.label }}</h6>
+                    
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="text-light">Category</th>
+                                <td class="text-end"><span class="badge text-bg-secondary">{{ item.category }}</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-light">Form</th>
+                                <td class="text-end"><span class="badge text-bg-info">{{ item.form }}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    {% if item.comment %}
+                    <p class="card-text" style="white-space: break-spaces;">{{ item.comment }}</p>
+                    {% endif %}
+                    <a href="{{ item.edit_url }}" class="card-link" style="text-decoration: none;">Edit</a>
+                    <a href="#" class="card-link" id="outgoingItemDeleteLink" style="text-decoration: none;" data-url="{{ item.delete_url }}" data-csrf="{{ csrf_token() }}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 offset-lg-3">
+            <div class="outgoing-read-created-edited">
+                <small>Created <span class="momentify-date">{{ item.date_created }}</span></small>
+                {% if item.date_edited %}
+                <small>Last Edited <span class="momentify-date">{{ item.date_edited }}</span></small>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block body_js%}
+<script src="{{ url_for('static', filename='js/outgoings.min.js') }}"></script>
+{% endblock body_js%}

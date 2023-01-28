@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us{% endblock title %}
+
+{% block content %}
+<div class="container mt-3 mb-3">
+    <div class="row mb-4">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 offset-lg-2">
+
+            <div class="card about-card">
+                <div class="card-body">
+                    <h1 class="card-title text-light">What We Are?</h1>
+                    <p class="text-light" style="text-align: justify;"><a href="{{ url_for('home.home') }}" style="text-decoration: none;">{{ app_name }}</a> is a tool that helps Users keep track of their Outgoings. <a href="{{ url_for('home.home') }}" style="text-decoration: none;">{{ app_name }}</a> provides a basic overview of the User's Outgoings for a particular range of dates.</p>
+                    <p class="text-light" style="text-align: justify;">Each Outgoing will have a Category, such as Rent, Electricity Bill, etc, that groups eachs Outgoing item as well
+                        as the Form of which this item was made i.e. via Credit Card, Cash, etc. <a href="{{ url_for('home.home') }}" style="text-decoration: none;">{{ app_name }}</a> gives Users the ability
+                        to view their Outgoings within a particular range of dates</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 offset-lg-2">
+
+            <div class="card about-card">
+                <div class="card-body">
+                
+                
+                    <h1 class="card-title text-light text-end">What We Are Not?</h1>
+                    <p class="text-end text-light" style="text-align: justify;"><a href="{{ url_for('home.home') }}" style="text-decoration: none;">{{ app_name }}</a> is NOT a Financial Service nor an Advisor. <a href="{{ url_for('home.home') }}" style="text-decoration: none;">{{ app_name }}</a> does not offer advices,
+                        formal or informal, about the User's Financial Health or how, what, where, when to spend their money.</p>
+                    <p class="text-end text-light" style="text-align: justify;"><a href="{{ url_for('home.home') }}" style="text-decoration: none;">{{ app_name }}</a> does not force Users to log all their Outgoings, this decision is entirely up to
+                        the Users</p>
+                
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

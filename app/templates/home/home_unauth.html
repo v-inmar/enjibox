@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row mt-3 mb-3">
+        <div class="col">
+            <div class="card unauth-home-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                            <img class="img-fluid" src="{{ url_for('file.illustration', file='illu1.svg') }}" alt="" style="height: 20rem;">
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                            <h1 style="cursor: default;">Log and Track of your purchases with <span class="unauth-home-app-name">Enjibox</span></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock content %}

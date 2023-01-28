@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block nav_outgoings %}active{% endblock nav_outgoings %}
+
+{% block title %}{{ item.label }}{% endblock title %}
+
+{% block content %}
+<div class="container mt-3 mb-3">
+    
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-6 offset-lg-3 mb-1">
+            <div class="outgoing-update-back">
+                <a href="{{ item.url }}" style="text-decoration: none;"><i class="bi bi-caret-left-fill"></i>Back to Item</a>
+                <p class="text-light" style="margin-bottom: 0;">Update Outgoing Item</p>
+            </div>
+            <hr>
+            <div class="card outgoing-item-update-card">
+                <div class="card-body">
+                    <form id="outgoingUpdateItemForm" method="post" action="{{ constants.url }}">
+                        <input id="outgoingCSRFTokenInput" type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <div class="row mb-1">
+                            <div class="col-12 col-md-8 col-lg-8">
+                                <label for="outgoingLabelInput" class="form-label text-light">Label</label>
+                                <input value="{{ item.label }}" type="text" class="form-control" id="outgoingLabelInput" maxlength="{{ constants.label_max }}" required>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label for="outgoingAmountInput" class="form-label text-light">Amount ({{ constants.currency }})</label>
+                                <input value="{{ item.amount }}" type="number" class="form-control" id="outgoingAmountInput" min="{{ constants.amount_min }}" max="{{ constants.amount_max }}" step=".01" required>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <label for="outgoingCategorySelect" class="form-label text-light">Category</label>
+                                <select id="outgoingCategorySelect" class="form-select" aria-label="Select Category" required>
+                                    <option value="" disabled selected>Choose category</option>
+                                    {% if constants.categories %}
+                                        {% for category in constants.categories %}
+                                        <option value="{{ category }}" class="outgoing-category-option" {% if item.category == category %}selected{% endif %}>{{ category }}</option>
+                                        {%  endfor %}
+                                    {% endif %}
+                                </select>
+                                <small><button class="outgoing-new-option" data-title="Add New Category" data-label="Category" data-maxlength="{{ constants.category_max }}">Add New Category</button></small>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <label for="outgoingFormSelect" class="form-label text-light">Form</label>
+                                <select id="outgoingFormSelect" class="form-select" aria-label="Select Form" required>
+                                    <option value="" disabled selected>Choose form</option>
+                                    {% if constants.forms %}
+                                        {% for form in constants.forms %}
+                                        <option value="{{ form }}" class="outgoing-form-option" {% if item.form == form %}selected{% endif %}>{{ form }}</option>
+                                        {%  endfor %}
+                                    {% endif %}
+                                </select>
+                                <small><button class="outgoing-new-option" data-title="Add New Form" data-label="Form" data-maxlength="{{ constants.form_max }}">Add New Form</button></small>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <label for="outgoingDateInput" class="form-label text-light">Date</label>
+                                <!-- value format: yyyy-mm-dd -->
+                                <input value="{{ item.date }}" type="date" class="form-control" id="outgoingDateInput" required>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <label for="outgoingTimeInput" class="form-label text-light">Time (Optional)</label>
+                                <input {% if item.time %}value="{{ item.time }}"{% endif %} type="time" class="form-control" id="outgoingTimeInput">
+                                <small><button class="outgoing-clear-time">Clear</button></small>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col">
+                                <label for="outgoingCommentTextarea" class="form-label text-light">Comment (Optional)</label>
+                                <textarea class="form-control" id="outgoingCommentTextarea" rows="3" style="resize: none;">{% if item.comment %}{{ item.comment }}{% endif %}</textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col">
+                                
+                                <input class="form-check-input" type="checkbox" id="outgoingOffsetCheckbox" {% if item.offset %}checked{% endif %}>
+                                <label class="form-check-label" for="outgoingOffsetCheckbox">Offset</label>
+                                <div>
+                                    <small><button type="button" id="outgoingWhatIsOffset" data-bs-toggle="modal" data-bs-target="#whatIsOffsetModal">What is Offset</button></small>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mt-4">
+                            <div class="col d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary" id="outgoingSaveBtn">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block body_js%}
+<script src="{{ url_for('static', filename='js/outgoings.min.js') }}"></script>
+{% endblock body_js%}

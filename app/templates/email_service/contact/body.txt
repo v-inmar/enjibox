@@ -1,0 +1,14 @@
+DO NOT REPLY TO THIS EMAIL
+
+Message ID: {{ pid }}
+
+
+Dear {{ firstname }}
+We have received your message.
+We aim to get back with you ASAP.
+
+Thanks,
+{{ app_name }} Support Team
+
+Your Message
+{{ message }}

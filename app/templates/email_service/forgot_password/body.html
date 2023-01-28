@@ -1,0 +1,8 @@
+<body>
+    <h4>DO NOT REPLY TO THIS EMAIL</h4>
+
+    <p>Please click/follow the link below to reset your password</p>
+    <p><a href="{{ url_for('auth.reset_password', token=token, _external=True) }}">Reset Password</a></p>
+
+    <p>Only valid for 1 hour</p>
+</body>

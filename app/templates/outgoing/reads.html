@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block nav_outgoings %}active{% endblock nav_outgoings %}
+{% block title %}Outgoings{% endblock title %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row mb-3">
+        <div class="col d-flex justify-content-end">
+            <a class="btn btn-sm btn-success" href="{{ url_for('outgoing.create') }}" role="button">Add New <i class="bi bi-plus-lg"></i></a>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card outgoing-reads-filter-card">
+                <div class="card-header">
+                    <span class="text-light">Filter</span>
+                </div>
+                <div class="card-body outgoing-reads-filter-card-body">
+                    <form id="outgoingFilterFormElement" data-urlprefix="{{ url_for('outgoing.reads') }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-4 mb-2">
+                                <div>
+                                    <small>Label</small>
+                                </div>
+                                <input type="text" class="form-control form-control-sm" id="outgoingLabelFilter" value="{{ label }}">
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-2">
+                                <div>
+                                    <small>From</small>
+                                </div>
+                                <input type="date" class="form-control form-control-sm" id="outgoingDateFromFilter" value="{{ date_from }}">
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-2">
+                                <div>
+                                    <small>To</small>
+                                </div>
+                                <input type="date" class="form-control form-control-sm" id="outgoingDateToFilter" value="{{ date_to }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-2">
+                                <div>
+                                    <small>Outgoing Category</small>
+                                </div>
+                                <select class="form-select form-select-sm" id="outgoingCategoryFilter">
+                                    
+                                    <option value="" {% if not category_default %}selected{% endif %}></option>
+                                    
+                                    {% if categories %}
+                                        {% for category in categories %}
+                                        {% if category_default %}
+                                        <option value="{{ category }}" {% if category_default == category %}selected{% endif %}>{{ category }}</option>
+                                        {% else %}
+                                        <option value="{{ category }}">{{ category }}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-2">
+                                <div>
+                                    <small>Outgoing Form</small>
+                                </div>
+                                <select class="form-select form-select-sm" id="outgoingFormFilter">
+                                    
+                                    <option value="" {% if not form_default %}selected{% endif %}></option>
+                                    
+                                    {% if forms %}
+                                        {% for form in forms %}
+                                        {% if form_default %}
+                                        <option value="{{ form }}" {% if form_default == form %}selected{% endif %}>{{ form }}</option>
+                                        {% else %}
+                                        <option value="{{ form }}">{{ form }}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary btn-sm" id="outgoingSubmitBtnFilter">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <div class="outgoing-reads-item-total">
+                <span class="text-light">Items ({{ num_of_items }})</span>
+                <span style="font-size: 1rem;" class="{% if total.with_offset %}badge text-bg-warning{% endif %}"{% if total.with_offset %}data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="With Offset"{% endif %}>
+                    Total {{ current_user.get_currency().value }}{{ "{0:,.2f}".format(total.amount) }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    {% if num_of_items > 0 %}
+    {% for obj in paginated_objs %}
+    <div class="row mb-2">
+        <div class="col">
+            <div class="list-group">
+                <a href="{{ url_for('outgoing.read', pid=obj.get_pid().value) }}" class="list-group-item list-group-item-action outgoing-reads-item-list-a">
+                    <div class="d-flex w-100 justify-content-between">
+                        <span class="badge {% if obj.time %}text-bg-success{% endif %} momentify-date" {% if obj.time %}data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Time: {{ obj.time.strftime('%H:%M') }}"{% endif %}>
+                            {{ obj.date }}
+                        </span>
+
+                        
+                        <span class="badge {% if obj.offset %}text-bg-warning{% endif %}" {% if obj.offset %}data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Offset"{% endif %}>
+                            {{ current_user.get_currency().value }}{{ "{0:,.2f}".format(obj.get_amount().value) }}
+                        </span>
+                        
+                    </div>
+                    <p class="mb-0 mt-1 text-light">{{ obj.get_label().value }}</p>
+                    {% if obj.get_comment() %}
+                    <div class="text-muted" style="font-size: 0.8rem; font-style: italic;">{{ obj.get_comment().value[:10] }}...</div>
+                    {% endif %}
+                    <small class="text-muted">
+                        <span class="badge text-bg-primary">{{ obj.get_category().value }}</span>
+                        <span class="badge text-bg-secondary">{{ obj.get_form().value }}</span>
+                    </small>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row mb-4">
+        <div class="col">
+            <nav>
+                <ul class="pagination pagination-sm mb-0 outgoing-reads-pagination">
+                    {% for i in range(1, num_of_pages+1, 1) %}
+                    <li class="page-item {% if page == i %}active{% endif %}">
+                        <a class="page-link"
+                            href="{{ url_for('outgoing.reads', label=label, date_from=date_from, date_to=date_to, category=category, form=form, page=i) }}">{{
+                            i }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <h3 class="text-secondary" style="font-style: italic;">No Items</h3>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock content %}
+
+{% block body_js%}
+<script src="{{ url_for('static', filename='js/outgoings.min.js') }}"></script>
+{% endblock body_js%}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 offset-lg-3">
+            <div class="card auth-card">
+                <div class="card-body">
+                    <h5 class="card-title">Login</h5>
+                    <form class="row" method="post">
+                        {{ form.csrf_token() }}
+
+                        <div class="input-group mt-3">
+                            <span class="input-group-text" id="basic-addon-email">@</span>
+                            {{ form.email(class="form-control", placeholder="Email Address") }}
+                        </div>
+                        {% if form.email.errors %}
+                        <div class="input-group">
+                            
+                            {% for error in form.email.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                            
+                        </div>
+                        {% endif %}
+                        
+                        <div class="mt-4 login-forgot-password-div">
+                            <small class="text-end"><a href="{{ url_for('auth.forgot_password') }}" style="text-decoration: none;">Forgot Password</a></small>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon-password"><i class="bi bi-lock"></i></span>
+                            {{ form.password(class="form-control", placeholder="Password") }}
+                        </div>
+
+                        {% if form.password.errors %}
+                        <div class="input-group">
+                            
+                            {% for error in form.password.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                            
+                        </div>
+                        {% endif %}
+
+                        <div class="input-group mt-4">
+                            <div class="form-check">
+                                {{ form.remember(class="form-check-input") }}
+                                <label class="form-check-label" for="remember">Remember me</label>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

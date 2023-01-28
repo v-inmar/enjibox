@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock title %}
+
+{% block head_js %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock head_js %}
+
+{% block content %}
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 offset-lg-3">
+            <div class="card auth-card">
+                <div class="card-body">
+                    <h5 class="card-title">Sign Up</h5>
+                    <form class="row" method="post">
+                        {{ form.csrf_token() }}
+                        <div class="row mt-3">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-5 mb-3">
+                                <label for="firstname" class="form-label">Firstname</label>
+                                {{ form.firstname(class="form-control", placeholder="i.e. John") }}
+                                {% if form.firstname.errors %}
+                                {% for error in form.firstname.errors %}
+                                <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-5 mb-3">
+                                <label for="lastname" class="form-label">Lastname</label>
+                                {{ form.lastname(class="form-control", placeholder="i.e. Doe") }}
+                                {% if form.lastname.errors %}
+                                {% for error in form.lastname.errors %}
+                                <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-2 mb-3">
+                                <label for="symbol" class="form-label">Currency</label>
+                                {{ form.currency(class="form-control", placeholder="i.e. £, $, etc") }}
+                                {% if form.currency.errors %}
+                                {% for error in form.currency.errors %}
+                                <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="email" class="form-label">Email Address</label>
+                                {{ form.email(class="form-control", placeholder="i.e. email@email.com") }}
+                                {% if form.email.errors %}
+                                {% for error in form.email.errors %}
+                                <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                {{ form.password(class="form-control", placeholder="********") }}
+                                {% if form.password.errors %}
+                                {% for error in form.password.errors %}
+                                <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
+                                <label for="repeat" class="form-label">Repeat Password</label>
+                                {{ form.repeat(class="form-control", placeholder="********") }}
+                                {% if form.repeat.errors %}
+                                {% for error in form.repeat.errors %}
+                                <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row mt-3 mb-3">
+                            <div class="col">
+                                <div class="recaptcha-div">
+                                    <span class="g-recaptcha" data-sitekey="{{ site_key }}" data-theme="dark"></span>
+                                    {% if recaptcha_error %}
+                                    <small class="text-danger">{{ recaptcha_error }}</small>
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <p>By clicking "Submit", you are agreeing to the <a href="" style="text-decoration: none;">Privacy</a> and <a href="" style="text-decoration: none;">Terms</a></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <button type="submit" class="btn btn-warning">Sign Up</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
