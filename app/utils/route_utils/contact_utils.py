@@ -67,7 +67,7 @@ def message_util(firstname: str, lastname: str, email: str, message: str) -> boo
         db.session.add(contact_obj)
         db.session.commit()
 
-        send_email_util(
+        send_email_util.delay(
             subject=f"Thank you for your message",
             recipients=[email],
             text_body=render_template("email_service/contact/body.txt", pid=pid_obj.value, firstname=firstname, message=message, app_name=current_app.config['APP_NAME']),

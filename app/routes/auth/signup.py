@@ -8,7 +8,9 @@ from app.utils.form_utils import add_field_error
 from app.utils.route_utils.auth_utils import signup_util
 from app.utils.route_utils.abort_utils import util_abort
 from app.utils.route_utils.recaptcha_utils import check_recaptcha_util
+from app.utils.decorator_utils import not_auth_required
 
+@not_auth_required
 def signup():
     site_key = current_app.config["R_SITE_KEY"]
     recaptcha_error = None

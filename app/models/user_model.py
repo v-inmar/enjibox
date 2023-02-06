@@ -55,7 +55,6 @@ class UserModel(BaseModel, UserMixin):
         '''
         try:
             return UserEmailModel.get_by_id(id=self.email_id)
-            # return UserEmailModel.query.filter(id==self.email_id).first()
         except Exception as e:
             current_app.logger.error(msg=e, exc_info=1)
             return False
@@ -66,7 +65,6 @@ class UserModel(BaseModel, UserMixin):
         '''
         try:
             return UserPIDModel.get_by_id(id=self.pid_id)
-            # return UserPIDModel.query.filter(id==self.pid_id).first()
         except Exception as e:
             current_app.logger.error(msg=e, exc_info=1)
             return False
@@ -77,7 +75,6 @@ class UserModel(BaseModel, UserMixin):
         '''
         try:
             return UserPasswordModel.get_by_id(id=self.password_id)
-            # return UserPasswordModel.query.filter(id=self.password_id).first()
         except Exception as e:
             current_app.logger.error(msg=e, exc_info=1)
             return False
@@ -89,7 +86,6 @@ class UserModel(BaseModel, UserMixin):
         '''
         try:
             return UserFirstnameModel.get_by_id(id=self.firstname_id)
-            # return UserFirstnameModel.query.filter(id==self.firstname_id).first()
         except Exception as e:
             current_app.logger.error(msg=e, exc_info=1)
             return False
@@ -142,67 +138,3 @@ class UserModel(BaseModel, UserMixin):
     
     
 
-    # @classmethod
-    # def get_user_by_email(cls, email:str) -> UserModel:
-    #     '''
-    #     Returns UserModel object
-
-    #     @param email: string email address, must be stripped and lowercased
-    #     '''
-    #     try:
-    #         email_obj = UserEmailModel.get_by_value(value=email)
-    #         if email_obj is False:
-    #             raise ValueError(f"UserEmailModel.get_by_value() returned False for email value: {email}")
-            
-    #         if email_obj is None:
-    #             return None
-            
-    #         return cls.query.filter(cls.email_id == email_obj.id).first()
-    #     except (SQLAlchemyError, ValueError) as e:
-    #         current_app.logger.error(msg=e, exc_info=1)
-    #         return False
-    # @classmethod
-    # def get_by_email(cls, email: str) -> UserModel:
-    #     '''
-    #     Class Method: Returns UserEmailModel object that matches the email
-
-    #     @param: email - String
-    #     '''
-    #     try:
-    #         email_obj = UserEmailModel.get_by_value(value=email)
-    #         if email_obj is False:
-    #             raise ValueError("UserEmailModel.get_by_value() returned False")
-            
-    #         if email_obj is None:
-    #             return None
-            
-    #         return cls.query.filter(cls.email_id == email_obj.id).first() or None
-    #     except SQLAlchemyError as e:
-    #         current_app.logger.error(msg=e, exc_info=1)
-    #         return False
-    
-    # @classmethod
-    # def get_by_pid(cls, pid: str) -> UserModel:
-    #     '''
-    #     Class Method: Returns UserModel object that matches the pid
-
-    #     @param: pid = String
-    #     '''
-    #     try:
-    #         return cls.query.filter(cls.pid == pid).first() or None
-    #     except SQLAlchemyError as e:
-    #         current_app.logger.error(msg=e, exc_info=1)
-    #         return False
-    
-    # @classmethod
-    # def get_by_token(cls, token: str) -> UserModel:
-    #     '''
-    #     Class Method: Returns UserModel object that matches the token
-
-    #     @param: token = String
-    #     '''
-    #     try:
-    #         return cls.query.filter(cls.token == token).first() or None
-    #     except SQLAlchemyError as e:
-    #         current_app.logger.error(msg=e, exc_info=1)
-    #         return False

@@ -129,7 +129,7 @@ def signup_util(firstname: str, lastname: str, email: str, password: str, curren
 
         
         token = URLSafeTimedSerializer(secret_key=current_app.config["SERIALIZER_KEY"]).dumps(obj=email, salt=current_app.config["VERIFY_SERIALIZER_SALT"])
-        send_email_util(
+        send_email_util.delay(
             subject=f"Welcome To {current_app.config['APP_NAME']}",
             recipients=[email],
             text_body=render_template("email_service/verify_email/body.txt", token=token),
@@ -166,7 +166,7 @@ def request_verification_util(email: str) -> bool:
     '''
     try:
         token = URLSafeTimedSerializer(secret_key=current_app.config["SERIALIZER_KEY"]).dumps(obj=email, salt=current_app.config["VERIFY_SERIALIZER_SALT"])
-        send_email_util(
+        send_email_util.delay(
             subject=f"Verify Email Address",
             recipients=[email],
             text_body=render_template("email_service/verify_email/body.txt", token=token),
@@ -181,7 +181,7 @@ def request_verification_util(email: str) -> bool:
 def forgot_password_util(email: str) -> bool:
     try:
         token = URLSafeTimedSerializer(secret_key=current_app.config["SERIALIZER_KEY"]).dumps(obj=email, salt=current_app.config["FORGOT_PASSWORD_SERIALIZER_SALT"])
-        send_email_util(
+        send_email_util.delay(
             subject=f"Reset Password",
             recipients=[email],
             text_body=render_template("email_service/forgot_password/body.txt", token=token),

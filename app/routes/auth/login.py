@@ -4,9 +4,11 @@ from flask_login import login_user
 from app.forms.auth_forms import LoginForm
 from app.utils.form_utils import add_field_error
 from app.utils.route_utils.abort_utils import util_abort
+from app.utils.decorator_utils import not_auth_required
 from app.models.user_model import UserModel
 from app.models.string_models import UserEmailModel
 
+@not_auth_required
 def login():
     form=LoginForm()
     if form.validate_on_submit():

@@ -1,4 +1,3 @@
-import os
 from app import celery, create_app
 from config import Config
 

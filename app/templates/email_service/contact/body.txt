@@ -5,7 +5,7 @@ Message ID: {{ pid }}
 
 Dear {{ firstname }}
 We have received your message.
-We aim to get back with you ASAP.
+Please allow us few days to answer any queries you might have.
 
 Thanks,
 {{ app_name }} Support Team

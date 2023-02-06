@@ -108,7 +108,7 @@ def edit_email_util(user_obj: UserModel, email: str) -> UserModel:
 
 
         token = URLSafeTimedSerializer(secret_key=current_app.config["SERIALIZER_KEY"]).dumps(obj=email, salt=current_app.config["VERIFY_SERIALIZER_SALT"])
-        send_email_util(
+        send_email_util.delay(
             subject=f"Email Address Changed",
             recipients=[email],
             text_body=render_template("email_service/verify_email/body.txt", token=token),
@@ -168,7 +168,7 @@ def edit_password_util(user_obj: UserModel, password: str) -> UserModel:
         email = user_obj.get_email().value if user_obj.get_email() else None
 
         if email:
-            send_email_util(
+            send_email_util.delay(
                 subject="Password Changed",
                 text_body=render_template("email_service/password_change/body.txt"),
                 html_body=render_template("email_service/password_change/body.html"),

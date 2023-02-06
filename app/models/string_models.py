@@ -180,22 +180,7 @@ class OutgoingLabelModel(BaseModel, StringModelMixin):
     def __init__(self, value: str) -> None:
         super().__init__()
         self.value = value
-    
 
-    # @classmethod
-    # def get_all_like_value(cls, value: str):
-    #     '''
-    #     Returns list of cls objects after using a "ilike" query. Note "ilike" is case insensitive
-
-    #     @param: value - String
-    #     '''
-    #     try:
-    #         if value:
-    #             return cls.query.filter(cls.value.ilike("%"+value+"%")).all()
-    #         return []
-    #     except SQLAlchemyError as e:
-    #         current_app.logger.error(msg=e, exc_info=1)
-    #         return False
 
 
 class OutgoingCategoryModel(BaseModel, StringModelMixin):

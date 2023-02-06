@@ -101,28 +101,6 @@ class OutgoingModel(BaseModel):
             return False
     
 
-    # def get_date(self) -> OutgoingDateModel:
-    #     '''
-    #     Returns OutgoingDateModel object
-    #     '''
-    #     try:
-    #         return OutgoingDateModel.query.filter(OutgoingDateModel.id == self.date_id).first() or None
-    #     except SQLAlchemyError as e:
-    #         current_app.logger.error(msg=e, exc_info=1)
-    #         return False
-    
-
-    # def get_time(self) -> OutgoingTimeModel:
-    #     '''
-    #     Returns OutgoingTimeModel object
-    #     '''
-    #     try:
-    #         return OutgoingTimeModel.query.filter(OutgoingTimeModel.id == self.time_id).first() or None
-    #     except SQLAlchemyError as e:
-    #         current_app.logger.error(msg=e, exc_info=1)
-    #         return False
-    
-
     def get_comment(self) -> OutgoingCommentModel:
         '''
         Returns OutgoingCommentModel object
@@ -161,78 +139,6 @@ class OutgoingModel(BaseModel):
         except SQLAlchemyError as e:
             current_app.logger.error(msg=e, exc_info=1)
             return False
-    
-
-
-    # @classmethod
-    # def get_all_by_user_id_with_month_and_year(cls, user_id: int, month: int, year: int) -> list:
-    #     '''
-    #     Class Method: Returns a list of OutgoingModel objects that matches user_id and lies within the month and year.
-
-    #     This does not include objects that has value  for date_deleted
-
-    #     @param user_id: Integer that represents the user's id
-    #     @param month: Integer that represents the month
-    #     @param year: Integer that represents the year
-    #     '''
-    #     try:
-    #         num_days = monthrange(year, month)[1]
-    #         return cls.query.filter(
-    #             cls.user_id==user_id,
-    #             cls.date_deleted == None,
-    #             and_(
-    #                 cls.date >= datetime.date(year=year, month=month, day=1),
-    #                 cls.date <= datetime.date(year=year, month=month, day=num_days)
-    #             )
-    #         ).order_by(cls.date.desc()).all()
-    #     except SQLAlchemyError as e:
-    #         current_app.logger.error(msg=e, exc_info=1)
-    #         return False
-    
-
-    
-    
-
-    # @classmethod
-    # def get_paginated_by_user_id_with_month_and_year(cls, user_id: int, month: int, year: int, page: int, per_page: int) -> list:
-    #     '''
-    #     Class Method: Returns a paginated list of OutgoingModel objects that matches user_id and lies within the month and year.
-
-    #     This does not include objects that has value  for date_deleted
-
-    #     Order by date descending
-
-    #     @param user_id: Integer that represents the user's id
-    #     @param month: Integer that represents the month
-    #     @param year: Integer that represents the year
-    #     @param page: Integer that represents the page number
-    #     @param per_page: Integer that represents the number of items per page
-    #     '''
-    #     try:
-    #         # Get all the date model object ids
-    #         date_obj_ids = OutgoingDateModel.get_ids_by_month_and_year(month=month, year=year)
-
-    #         if date_obj_ids is False:
-    #             raise SQLAlchemyError("OutgoingDateModel.get_ids_by_month_and_year() returned False")
-            
-    #         if date_obj_ids is None:
-    #             return None
-
-    #         num_days = monthrange(year, month)[1]
-    #         return cls.query.filter(
-    #             cls.user_id==user_id,
-    #             cls.date_deleted == None,
-    #             and_(
-    #                 cls.date >= datetime.date(year=year, month=month, day=1),
-    #                 cls.date <= datetime.date(year=year, month=month, day=num_days)
-    #             )
-    #         ).order_by(cls.date.desc()).paginate(
-    #             page=page,
-    #             per_page=per_page
-    #         )
-    #     except SQLAlchemyError as e:
-    #         current_app.logger.error(msg=e, exc_info=1)
-    #         return False
     
 
     @classmethod

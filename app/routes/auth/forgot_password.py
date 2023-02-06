@@ -8,8 +8,9 @@ from app.utils.route_utils.recaptcha_utils import check_recaptcha_util
 from app.forms.auth_forms import ForgotPasswordForm
 from app.models.string_models import UserEmailModel
 from app.models.user_model import UserModel
+from app.utils.decorator_utils import not_auth_required
 
-
+@not_auth_required
 def forgot_password():
     if current_user.is_authenticated:
         flash(message="Please change your password via the Settings", category="error")
