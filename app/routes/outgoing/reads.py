@@ -148,8 +148,6 @@ def reads():
     if paginated_objs:
         num_of_pages = paginated_objs.pages
         num_of_items = paginated_objs.total
-        for obj in paginated_objs:
-            print(f"user id: {current_user.id} outgoing id: {obj.id}")
 
     return render_template(
         "outgoing/reads.html",
