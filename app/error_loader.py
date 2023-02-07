@@ -3,7 +3,9 @@ from flask import (
     request,
     jsonify,
     current_app,
-    render_template
+    render_template,
+    redirect,
+    url_for
 )
 from flask_wtf.csrf import CSRFError
 
@@ -21,6 +23,13 @@ def load_error(app: Flask) -> None:
         if request.path.startswith("/api/"):
             return jsonify({"status": e.name, "code": e.code, "msg":e.description[0]}), e.code
         return render_template("error/bad_request.html"), 400
+
+    @app.errorhandler(401)
+    def unauthorized(e):
+        current_app.logger.error(msg=e.description[1], exc_info=1)
+        if request.path.startswith("/api/"):
+            return jsonify({"status": e.name, "code": e.code, "msg":e.description[0]}), e.code
+        return redirect(url_for('auth.login'))
     
     @app.errorhandler(404)
     def not_found(e):

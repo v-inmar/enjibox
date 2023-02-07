@@ -4,6 +4,6 @@ venv
 .env
 .flaskenv
 notes.txt
-.log
+*.log
 app.log.*
 app.log
