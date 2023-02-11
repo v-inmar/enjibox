@@ -256,9 +256,10 @@
                             {% else %}
                             <p class="mb-0 ms-3"><a href="{{ url_for('home.home') }}" style="text-decoration: none;">Home</a></p>
                             <p class="mb-0 ms-3"><a href="{{ url_for('outgoing.reads') }}" style="text-decoration: none;">Outgoings</a></p>
+                            {% endif %}
                             <p class="mb-0 ms-3"><a href="{{ url_for('legal.terms') }}" style="text-decoration: none;">Terms</a></p>
                             <p class="mb-0 ms-3"><a href="{{ url_for('legal.privacy') }}" style="text-decoration: none;">Privacy</a></p>
-                            {% endif %}
+                            
                             <p class="mb-0 ms-3"><a href="{{ url_for('about.about') }}" style="text-decoration: none;">About</a></p>
                             <p class="mb-0 ms-3"><a href="{{ url_for('contact.message') }}" style="text-decoration: none;">Contact</a></p>
                         </div>
