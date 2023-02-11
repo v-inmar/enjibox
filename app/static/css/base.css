@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 html {
     height: 100%;
@@ -10,6 +11,10 @@ body {
 
     min-height: 100%;
     font-family: 'Roboto', sans-serif !important;
+}
+
+.navbar-brand, .unauth-home-app-name {
+    font-family: 'Montserrat', sans-serif;
 }
 
 
