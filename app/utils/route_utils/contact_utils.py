@@ -1,3 +1,4 @@
+import datetime
 from sqlalchemy.exc import SQLAlchemyError
 from app import db
 from flask import current_app, render_template
@@ -67,11 +68,36 @@ def message_util(firstname: str, lastname: str, email: str, message: str) -> boo
         db.session.add(contact_obj)
         db.session.commit()
 
+        # Send to user
         send_email_util.delay(
             subject=f"Thank you for your message",
             recipients=[email],
             text_body=render_template("email_service/contact/body.txt", pid=pid_obj.value, firstname=firstname, message=message, app_name=current_app.config['APP_NAME']),
             html_body=render_template("email_service/contact/body.html", pid=pid_obj.value, firstname=firstname, message=message, app_name=current_app.config['APP_NAME'])
+        )
+
+        # Send to admin/support
+        send_email_util.delay(
+            subject=f"New Message",
+            recipients=[current_app.config["MAIL_ADMIN"]],
+            text_body=render_template(
+                "email_service/contact/to_support/body.txt",
+                pid=pid_obj.value,
+                firstname=firstname,
+                lastname=lastname,
+                email=email,
+                date_time=datetime.datetime.utcnow(),
+                message=message_obj.value
+            ),
+            html_body=render_template(
+                "email_service/contact/to_support/body.html",
+                pid=pid_obj.value,
+                firstname=firstname,
+                lastname=lastname,
+                email=email,
+                date_time=datetime.datetime.utcnow(),
+                message=message_obj.value
+            )
         )
         return True
     except (SQLAlchemyError, ValueError, Exception) as e:

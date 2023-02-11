@@ -1,0 +1,8 @@
+New Message
+Firstname: {{ firstname }}
+Lastname: {{ lastname }}
+Email Address: {{ email }}
+DateTime (UTC): {{ date_time }}
+Message ID: {{ pid }}
+Message:
+{{ message }}

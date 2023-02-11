@@ -20,6 +20,7 @@ class Config(object):
     MAIL_USERNAME = os.environ.get("mail_username")
     MAIL_PASSWORD = os.environ.get("mail_password")
     MAIL_SENDER = os.environ.get("mail_sender")
+    MAIL_ADMIN = os.environ.get("mail_admin")
 
     # -- DB -- #
     DBUSER = os.environ.get("dbuser")
@@ -41,7 +42,7 @@ class Config(object):
 
     # -- Celery Config -- #
     CELERY_BROKER_URL = "redis://localhost:6379"
-    result_backend = "redis://localhost:6379"
+    CELERY_RESULT_BACKEND = "redis://localhost:6379"
     # -- Images -- #
     LOGO = "elogo.svg"
     FAVICON = "favicon.ico"

@@ -1,6 +1,6 @@
 from flask_mail import Message
 from app import mail, celery
-from flask import current_app, json
+from flask import current_app
 
 
 @celery.task
