@@ -72,7 +72,7 @@
                         </li>
                         <li>
                             <p><strong>Website</strong> refers to Enjibox, accessible from <a
-                                    href="https://www.enjibox.com" style="text-decoration: none;">https://www.enjibox.com</a></p>
+                                    href="{{ url_for('home.home') }}" style="text-decoration: none;">https://www.enjibox.com</a></p>
                         </li>
                         <li>
                             <p><strong>You</strong> means the individual accessing or using the Service, or the company,
@@ -323,7 +323,7 @@
                     <h1>Contact Us</h1>
                     <p>If you have any questions about this Privacy Policy, You can contact us:</p>
                     <ul>
-                        <li>By visiting this page on our website: <a href="https://www.enjibox.com/contact/message" style="text-decoration: none;">https://www.enjibox.com/contact/message</a></li>
+                        <li>By visiting this page on our website: <a href="{{ url_for('contact.message') }}" style="text-decoration: none;">https://www.enjibox.com/contact/message</a></li>
                     </ul>
 
                 </div>
