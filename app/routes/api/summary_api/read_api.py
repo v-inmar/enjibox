@@ -189,7 +189,7 @@ def helper_util(comparator, dictionary, amount, offset, category, form):
 
             fht_dict = f_dict["highest_total"]
             fht_keys = fht_dict.keys()
-            if category not in fht_keys:
+            if form not in fht_keys:
                 fht_dict[form] = amount
             else:
                 fht_dict[form] += amount
