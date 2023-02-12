@@ -1,6 +1,7 @@
 __pycache__
 migrations
 venv
+.sock
 .env
 .flaskenv
 notes.txt
