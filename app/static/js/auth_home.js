@@ -1,7 +1,34 @@
 $(()=>{
     homePopulateAnchors();
     homeGetSummary();
+    homeOverviewButtonSelector();
 });
+
+const homeOverviewInit = () => {
+    $(".overview-btn").each(function(e){
+        if(!$(this).hasClass("btn-primary")){
+            $("."+$(this).data("target")).hide();
+        }else{
+            $("."+$(this).data("target")).show();
+        }
+    });
+}
+
+
+const homeOverviewButtonSelector = () => {
+    $(".overview-btn").on("click", function(e){
+        $(".overview-btn").each(function(e){
+            $(this).removeClass("btn-primary");
+            $(this).addClass("btn-secondary");
+            $("."+$(this).data("target")).hide();
+        });
+
+        $(this).addClass("btn-primary");
+        $(this).removeClass("btn-secondary");
+        $("."+$(this).data("target")).show();
+
+    });
+}
 
 const homePopulateAnchors = () => {
     const dateToday = new Date();
@@ -80,8 +107,16 @@ const homeGetSummarySuccessCallback = data => {
     $(".home-loading").css("display", "none");
     $(".home-main").css("display", "block");
     
-    utilityMakeHeightTheSame(".home-summary-category-li");
-    utilityMakeHeightTheSame(".home-summary-form-li");
+    utilityMakeHeightTheSame(".overview-li");
+    // utilityMakeHeightTheSame(".home-summary-form-li");
+
+    // utilityMakeHeightTheSame(".overview-today-li");
+    // utilityMakeHeightTheSame(".overview-this-week-li");
+    // utilityMakeHeightTheSame(".overview-this-month-li");
+    // utilityMakeHeightTheSame(".overview-this-year-li");
+    homeOverviewInit();
+
+    
 
     
 

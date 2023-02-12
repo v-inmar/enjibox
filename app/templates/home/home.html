@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="home-main" style="display: none;">
+    <div class="home-main mb-5" style="display: none;">
 
         <div class="row mb-2">
             <div class="col">
@@ -157,162 +157,161 @@
         </div>
 
 
-
-
-
         <div class="row mt-5 mb-2">
             <div class="col">
-                <h3 class="mb-1">Category</h3>
-                <div style="font-size: 1.1rem;">This section shows a simple overview of the Outgoing Category.</div>
-                <div style="font-size: 1.1rem;">Outgoing Category are indicators that groups particular items. i.e. Utilities, Rent, etc</div>
+                <h3 class="mb-1">Basic Overview</h3>
+                <div style="font-size: 1.1rem;">Shows the top 3 of most used and highest total of category and Form</div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+        <div class="row mb-2">
+            <div class="col">
+                <button type="button" class="overview-btn btn btn-primary btn-sm" data-target="overview-today-row">Today</button>
+                <button type="button" class="overview-btn btn btn-secondary btn-sm" data-target="overview-this-week-row">This Week</button>
+                <button type="button" class="overview-btn btn btn-secondary btn-sm" data-target="overview-this-month-row">This Month</button>
+                <button type="button" class="overview-btn btn btn-secondary btn-sm" data-target="overview-this-year-row">This Year</button>
+            </div>
+        </div>
+
+        <div class="row overview-today-row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                 <div class="card home-card">
-                    <div class="card-header bg-primary text-light">
-                        <span>Today</span>
+                    <div class="card-header text-light">
+                        <span>Category</span>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item home-li home-summary-category-li">
+                        <li class="list-group-item home-li home-summary-category-li overview-li">
                             <h6 class="card-title text-light">Highest Total</h6>
                             <div class="home-summary-category-today-highest-total"></div>
                         </li>
-                        <li class="list-group-item home-li home-summary-category-li">
+                        <li class="list-group-item home-li home-summary-category-li overview-li">
                             <h6 class="card-title text-light">Most Used</h6>
                             <div class="home-summary-category-today-most-used"></div>
                         </li>
                     </ul>
                 </div>
             </div>
-
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                 <div class="card home-card">
                     <div class="card-header text-light">
-                        <span>This Week</span>
+                        <span>Form</span>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item home-li home-summary-category-li">
-                            <h6 class="card-title text-light">Highest Total</h6>
-                            <div class="home-summary-category-this-week-highest-total"></div>
-                        </li>
-                        <li class="list-group-item home-li home-summary-category-li">
-                            <h6 class="card-title text-light">Most Used</h6>
-                            <div class="home-summary-category-this-week-most-used"></div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
-                <div class="card home-card">
-                    <div class="card-header text-light">
-                        <span>This Month</span>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item home-li home-summary-category-li">
-                            <h6 class="card-title text-light">Highest Total</h6>
-                            <div class="home-summary-category-this-month-highest-total"></div>
-                        </li>
-                        <li class="list-group-item home-li home-summary-category-li">
-                            <h6 class="card-title text-light">Most Used</h6>
-                            <div class="home-summary-category-this-month-most-used"></div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
-                <div class="card home-card">
-                    <div class="card-header text-light">
-                        <span>This Year</span>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item home-li home-summary-category-li">
-                            <h6 class="card-title text-light">Highest Total</h6>
-                            <div class="home-summary-category-this-year-highest-total"></div>
-                        </li>
-                        <li class="list-group-item home-li home-summary-category-li">
-                            <h6 class="card-title text-light">Most Used</h6>
-                            <div class="home-summary-category-this-year-most-used"></div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="row mt-5 mb-2">
-            <div class="col">
-                <h3 class="mb-1">Form</h3>
-                <div style="font-size: 1.1rem;">This section shows a simple overview of the Outgoing Form.</div>
-                <div style="font-size: 1.1rem;">Outgoing Form are the way a particular item was purchased i.e. Credit Card, Cash, etc</div>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
-                <div class="card home-card">
-                    <div class="card-header bg-primary text-light">
-                        <span>Today</span>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item home-li home-summary-form-li">
+                        <li class="list-group-item home-li home-summary-form-li overview-li">
                             <h6 class="card-title text-light">Highest Total</h6>
                             <div class="home-summary-form-today-highest-total"></div>
                         </li>
-                        <li class="list-group-item home-li home-summary-form-li">
+                        <li class="list-group-item home-li home-summary-form-li overview-li">
                             <h6 class="card-title text-light">Most Used</h6>
                             <div class="home-summary-form-today-most-used"></div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+        </div>
+
+        <div class="row overview-this-week-row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                 <div class="card home-card">
                     <div class="card-header text-light">
-                        <span>This Week</span>
+                        <span>Category</span>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item home-li home-summary-form-li">
+                        <li class="list-group-item home-li home-summary-category-li overview-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-category-this-week-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-category-li overview-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-category-this-week-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <span>Form</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-form-li overview-li">
                             <h6 class="card-title text-light">Highest Total</h6>
                             <div class="home-summary-form-this-week-highest-total"></div>
                         </li>
-                        <li class="list-group-item home-li home-summary-form-li">
+                        <li class="list-group-item home-li home-summary-form-li overview-li">
                             <h6 class="card-title text-light">Most Used</h6>
                             <div class="home-summary-form-this-week-most-used"></div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+        </div>
+
+        <div class="row overview-this-month-row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                 <div class="card home-card">
                     <div class="card-header text-light">
-                        <span>This Month</span>
+                        <span>Category</span>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item home-li home-summary-form-li">
+                        <li class="list-group-item home-li home-summary-category-li overview-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-category-this-month-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-category-li overview-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-category-this-month-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <span>Form</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-form-li overview-li">
                             <h6 class="card-title text-light">Highest Total</h6>
                             <div class="home-summary-form-this-month-highest-total"></div>
                         </li>
-                        <li class="list-group-item home-li home-summary-form-li">
+                        <li class="list-group-item home-li home-summary-form-li overview-li">
                             <h6 class="card-title text-light">Most Used</h6>
                             <div class="home-summary-form-this-month-most-used"></div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+        </div>
+
+        <div class="row overview-this-year-row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                 <div class="card home-card">
                     <div class="card-header text-light">
-                        <span>This Year</span>
+                        <span>Category</span>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item home-li home-summary-form-li">
+                        <li class="list-group-item home-li home-summary-category-li overview-li">
+                            <h6 class="card-title text-light">Highest Total</h6>
+                            <div class="home-summary-category-this-year-highest-total"></div>
+                        </li>
+                        <li class="list-group-item home-li home-summary-category-li overview-li">
+                            <h6 class="card-title text-light">Most Used</h6>
+                            <div class="home-summary-category-this-year-most-used"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                <div class="card home-card">
+                    <div class="card-header text-light">
+                        <span>Form</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item home-li home-summary-form-li overview-li">
                             <h6 class="card-title text-light">Highest Total</h6>
                             <div class="home-summary-form-this-year-highest-total"></div>
                         </li>
-                        <li class="list-group-item home-li home-summary-form-li">
+                        <li class="list-group-item home-li home-summary-form-li overview-li">
                             <h6 class="card-title text-light">Most Used</h6>
                             <div class="home-summary-form-this-year-most-used"></div>
                         </li>

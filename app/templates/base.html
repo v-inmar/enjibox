@@ -247,7 +247,11 @@
                 <div class="col-12">
 
                     <div class="footer-container">
-                        <p class="mb-0">&#169; <span class="copy-right-year">2023</span> Enjibox. All rights reserved</p>
+                        <div style="display: flex; flex-flow: column nowrap;">
+                            <p class="mb-0">&#169; <span class="copy-right-year">2023</span> {{ config.APP_NAME }}. All rights reserved</p>
+                            <small>V{{ config.VERSION }}</small>
+                        </div>
+                        
 
                         <div style="display: flex; flex-flow: row wrap;">
                             {% if not current_user.is_authenticated %}
