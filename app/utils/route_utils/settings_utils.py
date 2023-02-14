@@ -104,6 +104,7 @@ def edit_email_util(user_obj: UserModel, email: str) -> UserModel:
         
         user_obj.token_id = token_obj.id
         user_obj.email_id = email_obj.id
+        user_obj.verified = None
         db.session.commit()
 
 
