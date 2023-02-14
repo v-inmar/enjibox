@@ -1,7 +1,7 @@
 import datetime
 import calendar
 from decimal import Decimal
-from flask import render_template, request, redirect, url_for, json
+from flask import render_template, request, redirect, url_for, json, current_app
 from flask_login import current_user
 
 from app.utils.decorator_utils import auth_required
@@ -143,11 +143,16 @@ def reads():
         per_page=15
     )
 
+    grouped = None
     num_of_pages = 0
     num_of_items = 0
     if paginated_objs:
+        grouped = group_reads_by_date_util(paginated_objs=paginated_objs)
         num_of_pages = paginated_objs.pages
         num_of_items = paginated_objs.total
+
+        # print(f"Paginated: {[d for d in paginated_objs]}")
+        # print(f"Grouped: {grouped}")
 
     return render_template(
         "outgoing/reads.html",
@@ -161,6 +166,53 @@ def reads():
         page=page,
         num_of_pages=num_of_pages,
         num_of_items=num_of_items,
-        paginated_objs=paginated_objs,
-        total=total
+        total=total,
+        grouped=grouped
     )
+
+
+def group_reads_by_date_util(paginated_objs: list) -> list:
+    try:
+        grouped = []
+        for obj in paginated_objs:
+
+            # Prepare the data
+            obj_data = {
+                "date": obj.date,
+                "time": obj.time,
+                "label": obj.get_label().value,
+                "category": obj.get_category().value,
+                "form": obj.get_form().value,
+                "comment": obj.get_comment().value[:10] if obj.get_comment() else None,
+                "offset": obj.offset,
+                "amount": obj.get_amount().value,
+                "pid": obj.get_pid().value
+            }
+
+            # String date
+            date_strf = obj.date.strftime("%Y-%m-%d")
+
+            # Get the index of the dictionary with key the same as the string date or None
+            index = next((idx for idx,data in enumerate(grouped) if f"{date_strf}" in data), None)
+            
+            # There is index
+            if type(index) is int:
+                date_dict = grouped[index] # get the dictionary from list using the index
+                data_list = date_dict[date_strf] # get the list from the dictionary using string date as key
+                data_list.append(obj_data) # append the new data
+
+                # replace the dictionary altogether that resides in the list with the given index
+                grouped[index] = {
+                    f"{date_strf}":data_list
+                }
+            else: # No index, means not in the list yet
+                # Append to the list as new dictionary being the string date as key
+                grouped.append(
+                    {
+                    f"{date_strf}": [obj_data]
+                    }
+                )
+        return grouped
+    except (KeyError, Exception) as e:
+        current_app.logger.error(msg=e, exc_info=1)
+        return False

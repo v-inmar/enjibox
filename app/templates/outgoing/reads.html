@@ -102,6 +102,61 @@
     </div>
 
     {% if num_of_items > 0 %}
+    {% for obj in grouped %}
+    <div class="row mb-3">
+        <div class="col-12">
+            {% for key in obj.keys() %}
+            <h5 class="momentify-date ps-2 pt-2 pe-2" style="color: #f3f1b6;">{{ key }}</h5>
+            <div class="card">
+                
+                <!-- <div class="card-header"><span class="momentify-date text-light" style="font-size: 1.5rem;">{{ key }}</span></div> -->
+                <div class="list-group list-group-flush">
+                    {% for data in obj[key] %}
+                    <a href="{{ url_for('outgoing.read', pid=data.pid) }}" class="list-group-item list-group-item-action outgoing-reads-a">
+                        <div class="d-flex">
+                            <div class="flex-grow-1"><p class="mb-0 mt-1 text-light">{{ data.label }}</p></div>
+                            <div class="{% if data.offset %}offset-badge{% else %}non-offset-badge{% endif %}" {% if data.offset %} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Offset"{% endif %}>{{ current_user.get_currency().value }}{{ "{0:,.2f}".format(data.amount) }}</div>
+                        </div>
+                        {% if data.comment %}
+                        <div class="text-muted" style="font-size: 0.8rem; font-style: italic;">{{ data.comment[:10] }}...</div>
+                        {% endif %}
+                        <small class="text-muted">
+                            <span class="badge text-bg-primary">{{ data.category }}</span>
+                            <span class="badge text-bg-secondary">{{ data.form }}</span>
+                        </small>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row mb-4">
+        <div class="col">
+            <nav>
+                <ul class="pagination pagination-sm mb-0 outgoing-reads-pagination">
+                    {% for i in range(1, num_of_pages+1, 1) %}
+                    <li class="page-item {% if page == i %}active{% endif %}">
+                        <a class="page-link"
+                            href="{{ url_for('outgoing.reads', label=label, date_from=date_from, date_to=date_to, category=category, form=form, page=i) }}">{{
+                            i }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <h3 class="text-secondary" style="font-style: italic;">No Items</h3>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- OLD -->
+    <!-- {% if num_of_items > 0 %}
     {% for obj in paginated_objs %}
     <div class="row mb-2">
         <div class="col">
@@ -152,7 +207,7 @@
             <h3 class="text-secondary" style="font-style: italic;">No Items</h3>
         </div>
     </div>
-    {% endif %}
+    {% endif %} -->
 
 </div>
 {% endblock content %}

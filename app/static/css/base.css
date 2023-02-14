@@ -35,7 +35,7 @@ footer {
 }
 
 
-.legal-card, .about-card, .unauth-home-card, .contact-card, .home-li, .outgoing-reads-filter-card-body, .outgoing-reads-item-list-a, .outgoing-read-item-card-body, .settings-card, .auth-card, .outgoing-item-update-card, .outgoing-item-create-card {
+.outgoing-reads-a, .legal-card, .about-card, .unauth-home-card, .contact-card, .home-li, .outgoing-reads-filter-card-body, .outgoing-reads-item-list-a, .outgoing-read-item-card-body, .settings-card, .auth-card, .outgoing-item-update-card, .outgoing-item-create-card {
     background: #1a1c1b;
 }
 
@@ -101,4 +101,17 @@ footer {
 
 .login-forgot-password-div {
     display: flex; flex-flow: row nowrap; justify-content: flex-end;
+}
+
+.offset-badge {
+    background-color: #ffff00;
+    color: #000000;
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.3rem;
+    font-weight: bold;
+}
+
+.non-offset-badge {
+    color: #ffffff;
+    padding: 0.1rem 0.3rem;
 }
