@@ -105,7 +105,7 @@
         <div class="col">
             <div class="outgoing-reads-item-total">
                 <span class="text-light">Items ({{ num_of_items }})</span>
-                <span style="font-size: 1rem;" class="{% if total.with_offset %}badge text-bg-warning{% endif %}"{% if total.with_offset %}data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="With Offset"{% endif %}>
+                <span style="font-size: 1rem;" class="{% if total.with_offset %}badge text-bg-warning{% else %}text-light{% endif %}"{% if total.with_offset %}data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="With Offset"{% endif %}>
                     Total {{ current_user.get_currency().value }}{{ "{0:,.2f}".format(total.amount) }}
                 </span>
             </div>
