@@ -85,6 +85,17 @@
                         </div>
                     </form>
                 </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-12">
+                            <span class="text-light me-2">Presets</span>
+                            <a class="btn btn-primary btn-sm outgoing-read-preset-a outgoing-read-preset-a-today" href="{{ url_for('outgoing.reads') }}" role="button">Today</a>
+                            <a class="btn btn-primary btn-sm outgoing-read-preset-a outgoing-read-preset-a-this-week" href="{{ url_for('outgoing.reads') }}" role="button">This Week</a>
+                            <a class="btn btn-primary btn-sm outgoing-read-preset-a outgoing-read-preset-a-this-month" href="{{ url_for('outgoing.reads') }}" role="button">This Month</a>
+                            <a class="btn btn-primary btn-sm outgoing-read-preset-a outgoing-read-preset-a-this-year" href="{{ url_for('outgoing.reads') }}" role="button">This Year</a>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
         </div>
@@ -109,7 +120,6 @@
             <h5 class="momentify-date ps-2 pt-2 pe-2" style="color: #f3f1b6;">{{ key }}</h5>
             <div class="card">
                 
-                <!-- <div class="card-header"><span class="momentify-date text-light" style="font-size: 1.5rem;">{{ key }}</span></div> -->
                 <div class="list-group list-group-flush">
                     {% for data in obj[key] %}
                     <a href="{{ url_for('outgoing.read', pid=data.pid) }}" class="list-group-item list-group-item-action outgoing-reads-a">

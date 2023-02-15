@@ -1,5 +1,4 @@
 $(()=>{
-    // utilityMakeHeightTheSame(".outgoing-cards");
     utilityMakeHeightTheSame(".outgoing-reads-item-list-a");
 
     outgoingClearTime();
@@ -13,7 +12,39 @@ $(()=>{
     outgoingDeleteItem();
 
     outgoingFilterSubmit();
+
+    outgoingPopulatePresetAnchors();
 });
+
+/**
+ * Set the urls for the presets
+ */
+const outgoingPopulatePresetAnchors = () => {
+    var urlPrefix = $(".outgoing-read-preset-a").attr("href");
+    const pageNumber = 1;
+
+    // Set Today link
+    const dateTodayISONoTime = utilityGetDateToday();
+    $(".outgoing-read-preset-a-today").attr("href",urlPrefix+"?label=&date_from="+dateTodayISONoTime+"&date_to="+dateTodayISONoTime+"&category=&form=&page="+pageNumber);
+
+    // Set Dates for Week start and Week end
+    const dateThisWeekStartISONoTime = utilityGetThisWeekStartDate();
+    const dateThisWeekEndISONoTime = utilityGetThisWeekEndDate();
+    $(".outgoing-read-preset-a-this-week").attr("href",urlPrefix+"?label=&date_from="+dateThisWeekStartISONoTime+"&date_to="+dateThisWeekEndISONoTime+"&category=&form=&page="+pageNumber);
+
+    // Set Dates for the month start and month end
+    const dateThisMonthStartISONoTime = utilityGetThisMonthStartDate();
+    const dateThisMonthEndISONoTime = utilityGetThisMonthEndDate();
+    $(".outgoing-read-preset-a-this-month").attr("href",urlPrefix+"?label=&date_from="+dateThisMonthStartISONoTime+"&date_to="+dateThisMonthEndISONoTime+"&category=&form=&page="+pageNumber);
+
+
+    // Set Dates for the year start and year end
+    const dateThisYearStartISONoTime = utilityGetThisYearStartDate();
+    const dateThisYearEndISONoTime = utilityGetThisYearEndDate();
+    $(".outgoing-read-preset-a-this-year").attr("href",urlPrefix+"?label=&date_from="+dateThisYearStartISONoTime+"&date_to="+dateThisYearEndISONoTime+"&category=&form=&page="+pageNumber);
+
+
+}
 
 
 

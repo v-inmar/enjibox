@@ -8,6 +8,73 @@ $(()=>{
     utilitySetCopyRightYear();
 });
 
+/**
+ * Get the today's date
+ * @returns String date in the format of yyyy-mm-dd i.e. 1970-12-31
+ */
+const utilityGetDateToday = () => {
+    const dateToday = new Date();
+    return dateToday.toISOString().split("T")[0];
+}
+
+/**
+ * Get this week's start date. Start of the week is Sunday
+ * @returns String date in the format of yyyy-mm-dd i.e. 1970-12-31
+ */
+const utilityGetThisWeekStartDate = () => {
+    const dateToday = new Date();
+    // Days starts with 0 - Sunday
+    weekBegin = new Date().setDate(dateToday.getDate() - dateToday.getDay()) // Gets the epoch time for start of the week base on today's date
+    return new Date(weekBegin).toISOString().split("T")[0];
+}
+
+/**
+ * Get this week's end date
+ * @returns String date in the format of yyyy-mm-dd i.e. 1970-12-31
+ */
+const utilityGetThisWeekEndDate = () => {
+    const dateToday = new Date();
+    weekEnd = new Date().setDate(dateToday.getDate() + (6 - dateToday.getDay())); // Gets the epoch time for end the week based on today's date
+    return new Date(weekEnd).toISOString().split("T")[0];
+}
+
+/**
+ * Get this month's start date
+ * @returns String date in the format of yyyy-mm-dd i.e. 1970-12-31
+ */
+const utilityGetThisMonthStartDate = () => {
+    const dateToday = new Date();
+    return new Date(dateToday.getFullYear(), dateToday.getMonth(), 1).toISOString().split("T")[0];
+}
+
+/**
+ * Get this month's end date
+ * @returns String date in the format of yyyy-mm-dd i.e. 1970-12-31
+ */
+const utilityGetThisMonthEndDate = () => {
+    const dateToday = new Date();
+    return new Date(dateToday.getFullYear(), dateToday.getMonth()+1, 0).toISOString().split("T")[0];
+}
+
+/**
+ * Get start of the year date
+ * @returns String date in the format of yyyy-mm-dd i.e. 1970-12-31
+ */
+const utilityGetThisYearStartDate = () => {
+    const dateToday = new Date();
+    return new Date(dateToday.getFullYear(), 0, 1).toISOString().split("T")[0];
+}
+
+/**
+ * Get end of the year date
+ * @returns String date in the format of yyyy-mm-dd i.e. 1970-12-31
+ */
+const utilityGetThisYearEndDate = () => {
+    const dateToday = new Date();
+    // Notice 11 instead of 12, month starts at 0
+    return new Date(dateToday.getFullYear(), 11, 31).toISOString().split("T")[0];
+}
+
 
 const utilitySetCopyRightYear = () => {
     const dateToday = new Date();

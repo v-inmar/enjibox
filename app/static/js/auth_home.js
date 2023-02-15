@@ -31,30 +31,26 @@ const homeOverviewButtonSelector = () => {
 }
 
 const homePopulateAnchors = () => {
-    const dateToday = new Date();
     const outgoingLinkPrefix = $(".home-summary-link-today").attr("href");
     const pageNumber=1
     // Get Today's Date
-    const dateTodayISONoTime = dateToday.toISOString().split("T")[0];
+    const dateTodayISONoTime = utilityGetDateToday();
     $(".home-summary-link-today").attr("href",outgoingLinkPrefix+"?label=&date_from="+dateTodayISONoTime+"&date_to="+dateTodayISONoTime+"&category=&form=&page="+pageNumber);
 
 
     // Get Dates for Week start and Week end
-    // Days starts with 0 - Sunday
-    epochWeekBegin = new Date().setDate(dateToday.getDate() - dateToday.getDay()) // Gets the epoch time for start of the week base on today's date
-    epochWeekEnd = new Date().setDate(dateToday.getDate() + (6 - dateToday.getDay())); // Gets the epoch time for end the week based on today's date
-    const dateThisWeekStartISONoTime = new Date(epochWeekBegin).toISOString().split("T")[0];
-    const dateThisWeekEndISONoTime = new Date(epochWeekEnd).toISOString().split("T")[0];
+    const dateThisWeekStartISONoTime = utilityGetThisWeekStartDate();
+    const dateThisWeekEndISONoTime = utilityGetThisWeekEndDate();
     $(".home-summary-link-this-week").attr("href",outgoingLinkPrefix+"?label=&date_from="+dateThisWeekStartISONoTime+"&date_to="+dateThisWeekEndISONoTime+"&category=&form=&page="+pageNumber);
 
     // Get Dates for the month start and month end
-    const dateThisMonthStartISONoTime = new Date(dateToday.getFullYear(), dateToday.getMonth(), 1).toISOString().split("T")[0];
-    const dateThisMonthEndISONoTime = new Date(dateToday.getFullYear(), dateToday.getMonth()+1, 0).toISOString().split("T")[0];
+    const dateThisMonthStartISONoTime = utilityGetThisMonthStartDate();
+    const dateThisMonthEndISONoTime = utilityGetThisMonthEndDate();
     $(".home-summary-link-this-month").attr("href",outgoingLinkPrefix+"?label=&date_from="+dateThisMonthStartISONoTime+"&date_to="+dateThisMonthEndISONoTime+"&category=&form=&page="+pageNumber);
 
     // Get Dates for the year start and year end
-    const dateThisYearStartISONoTime = new Date(dateToday.getFullYear(), 0, 1).toISOString().split("T")[0];
-    const dateThisYearEndISONoTime = new Date(dateToday.getFullYear(), 11, 31).toISOString().split("T")[0];
+    const dateThisYearStartISONoTime = utilityGetThisYearStartDate();
+    const dateThisYearEndISONoTime = utilityGetThisYearEndDate();
     $(".home-summary-link-this-year").attr("href",outgoingLinkPrefix+"?label=&date_from="+dateThisYearStartISONoTime+"&date_to="+dateThisYearEndISONoTime+"&category=&form=&page="+pageNumber);
 
 }
