@@ -11,6 +11,7 @@ body {
 
     min-height: 100%;
     font-family: 'Roboto', sans-serif !important;
+    background-color: #0f111a;
 }
 
 .navbar-brand, .unauth-home-app-name {
@@ -19,7 +20,8 @@ body {
 
 
 footer {
-    background: #2b3035;
+    /* background: #2b3035; */
+    background-color: #22263a;
     color: #fff;
     padding: 1rem;
     margin-top: auto;
