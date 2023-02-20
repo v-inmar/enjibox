@@ -47,7 +47,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {% block nav_user %}{% endblock nav_user %}" href="#"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ current_user.get_firstname().value }}</a>
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-end" style="background-color: #22263a;">
                             {% if not current_user.verified %}
                             <li>
                                 <a class="dropdown-item bg-warning text-dark" href="{{ url_for('auth.request_verification') }}">Request New Verification</a>
