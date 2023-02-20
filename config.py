@@ -51,4 +51,4 @@ class Config(object):
     # -- Constants -- #
     OUTGOING_JSON_KEYS = ["label", "amount", "date", "time", "category", "form", "comment", "offset"]
     APP_NAME = "Enjibox"
-    VERSION = "1.0"
+    VERSION = "1.1"
