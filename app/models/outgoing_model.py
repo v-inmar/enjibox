@@ -157,7 +157,7 @@ class OutgoingModel(BaseModel):
             return False
 
     @classmethod
-    def get_paginated_with_filter(cls, user_id: int, label_ids: Optional[List[int]], date_from: datetime.date, date_to: datetime.date, category_id: Optional[int], form_id: Optional[int], page:int=1, per_page:int=15) -> list:
+    def get_paginated_with_filter(cls, user_id: int, label_ids: Optional[List[int]], date_from: datetime.date, date_to: datetime.date, category_id: Optional[int], form_id: Optional[int], page:int=1, per_page:int=100) -> list:
         '''
         Class Method: Returns a paginated list of OutgoingModel objects that matches the params.
 

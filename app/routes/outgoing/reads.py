@@ -139,8 +139,7 @@ def reads():
         date_to=date_to,
         category_id=category_id,
         form_id=form_id,
-        page=page,
-        per_page=15
+        page=page
     )
 
     grouped = None
